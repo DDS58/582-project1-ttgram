@@ -2,18 +2,18 @@
 
 ## Planning
 
-- main components : selectedPicture
-  Profile picture, username, Timestamp, link to main profil?
-  Photo, Caption, Tags
-  Like button, heart icon, like number
-  Comment section, username, comment, list, send comment button, Comment Input, Timestamp
+### main components : selectedPicture
+-  Profile picture, username, Timestamp, link to main profil?
+-  Photo, Caption, Tags
+-  Like button, heart icon, like number
+-  Comment section, username, comment, list, send comment button, Comment Input, Timestamp
 
-- other possible component
-  albumDisplay, image list a la Tt, click to enter selectedPicture
-  header, navigation bar, logo, search functionality
-  user profile link
+### other possible component
+- albumDisplay, image list a la Tt, click to enter selectedPicture
+- header, navigation bar, logo, search functionality
+- user profile link
 
-use something similar
+-use something similar
 data() {
 return {
 posts,
