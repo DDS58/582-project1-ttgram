@@ -1,15 +1,27 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <selectedPicture :uploadedPicture="uploadedPicture" />
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import selectedPicture from "./components/selectedPicture.vue";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    selectedPicture,
+  },
+
+  data() {
+    return {
+      uploadedPicture: {
+        id: 1,
+        username: "anonymous",
+        image: "https://placehold.co/400",
+        tags: "selfie",
+        likes: 0,
+        created_at: "08/08/2023",
+      },
+    };
   },
 };
 </script>
