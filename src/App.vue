@@ -17,7 +17,7 @@ export default {
         id: 1,
         username: "anonymous",
         image: "https://placehold.co/400",
-        tags: "selfie",
+        tags: "#selfie",
         likes: 0,
         created_at: "08/08/2023",
       },

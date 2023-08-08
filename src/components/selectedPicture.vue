@@ -2,12 +2,20 @@
   <div>
     <h2>viewing pic</h2>
     <h3>{{ uploadedPicture.username }}</h3>
-    <img :src="uploadedPicture.image" alt="uploaded picture" />
+    <img
+      :src="uploadedPicture.image"
+      alt="uploaded picture"
+      @dblclick="likePicture"
+    />
     <p>{{ uploadedPicture.tags }}</p>
     <p>
-      <font-awesome-icon icon="fa-regular fa-heart" />
-      <font-awesome-icon icon="fa-solid fa-heart" />
-      {{ uploadedPicture.likes }}
+      <font-awesome-icon
+        v-if="!isLiked"
+        @click="likePicture"
+        icon="fa-regular fa-heart"
+      />
+      <font-awesome-icon v-else @click="likePicture" icon="fa-solid fa-heart" />
+      {{ uploadedPicture.likes + count }}
     </p>
     <p>{{ uploadedPicture.created_at }}</p>
   </div>
@@ -27,6 +35,26 @@ export default {
         likes: 0,
         created_at: "timestamp",
       };
+    },
+  },
+
+  data() {
+    return {
+      isLiked: false,
+      count: 0,
+    };
+  },
+
+  methods: {
+    likePicture() {
+      this.isLiked = !this.isLiked;
+      if (this.isLiked) {
+        this.count++;
+        this.isLiked = true;
+      } else {
+        this.count--;
+        this.isLiked = false;
+      }
     },
   },
 };
