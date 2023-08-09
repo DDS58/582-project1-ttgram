@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>viewing pic</h2>
+    <!-- <h2>viewing pic</h2> -->
     <h3>{{ uploadedPicture.username }}</h3>
     <img
       id="imgLink"
@@ -30,16 +30,18 @@
 export default {
   name: "selectedPicture",
   props: {
-    uploadedPicture: Object,
-    default() {
-      return {
-        id: 0,
-        username: "username",
-        image: "image",
-        tags: "tags",
-        likes: 0,
-        created_at: "timestamp",
-      };
+    uploadedPicture: {
+      type: Object,
+      default() {
+        return {
+          id: 0,
+          username: "username",
+          image: "image",
+          tags: "tags",
+          likes: 0,
+          created_at: "timestamp",
+        };
+      },
     },
   },
 
@@ -61,6 +63,7 @@ export default {
         this.isLiked = false;
       }
     },
+    // this only take the first img src link on the array
     shareLink() {
       var copyText = document.getElementById("imgLink");
       navigator.clipboard.writeText(copyText.src);
