@@ -3,6 +3,7 @@
     <h2>viewing pic</h2>
     <h3>{{ uploadedPicture.username }}</h3>
     <img
+      id="imgLink"
       :src="uploadedPicture.image"
       alt="uploaded picture"
       @dblclick="likePicture"
@@ -16,6 +17,10 @@
       />
       <font-awesome-icon v-else @click="likePicture" icon="fa-solid fa-heart" />
       {{ uploadedPicture.likes + count }}
+      <font-awesome-icon
+        @dblclick="shareLink"
+        icon="fa-regular fa-share-from-square"
+      />
     </p>
     <p>{{ uploadedPicture.created_at }}</p>
   </div>
@@ -55,6 +60,11 @@ export default {
         this.count--;
         this.isLiked = false;
       }
+    },
+    shareLink() {
+      var copyText = document.getElementById("imgLink");
+      navigator.clipboard.writeText(copyText.src);
+      console.log("link copied to clipboard :" + copyText.src);
     },
   },
 };
