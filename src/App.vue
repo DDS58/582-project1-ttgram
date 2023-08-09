@@ -1,16 +1,19 @@
 <template>
   <!-- <selectedPicture :uploadedPicture="uploadedPicture" /> -->
-  <AlbumDisplay :album="album" />
+  <!-- <commentSection :userComment="userComment" /> -->
+  <AlbumDisplay :album="album" :allComments="allComments" />
 </template>
 
 <script>
 // import selectedPicture from "./components/selectedPicture.vue";
+// import commentSection from "./components/commentSection.vue";
 import AlbumDisplay from "./components/albumDisplay.vue";
 
 export default {
   name: "App",
   components: {
     // selectedPicture,
+    // commentSection,
     AlbumDisplay,
   },
 

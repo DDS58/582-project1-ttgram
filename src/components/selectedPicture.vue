@@ -24,11 +24,21 @@
     </p>
     <p>{{ uploadedPicture.created_at }}</p>
   </div>
+  <div>
+    <commentSection
+      v-for="userComment in allComments"
+      :userComment="userComment"
+      :key="userComment.cmtid"
+    ></commentSection>
+  </div>
 </template>
 
 <script>
+import commentSection from "./commentSection.vue";
+
 export default {
   name: "selectedPicture",
+
   props: {
     uploadedPicture: {
       type: Object,
@@ -43,12 +53,39 @@ export default {
         };
       },
     },
+    allComments: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
+  },
+
+  components: {
+    commentSection,
   },
 
   data() {
     return {
       isLiked: false,
       count: 0,
+      allComments: [
+        {
+          cmtid: 1,
+          userid: "userid1",
+          message: "comment1",
+        },
+        {
+          cmtid: 2,
+          userid: "userid2",
+          message: "comment2",
+        },
+        {
+          cmtid: 3,
+          userid: "userid3",
+          message: "comment3",
+        },
+      ],
     };
   },
 
