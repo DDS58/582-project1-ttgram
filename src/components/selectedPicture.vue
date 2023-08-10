@@ -24,12 +24,16 @@
     </p>
     <p>{{ uploadedPicture.created_at }}</p>
   </div>
-  <div>
+  <div class="view">
     <commentSection
       v-for="userComment in allComments"
       :userComment="userComment"
       :key="userComment.cmtid"
-    ></commentSection>
+    >
+    </commentSection>
+  </div>
+  <div>
+    <button @click="viewAll" class="asd">View All</button>
   </div>
 </template>
 
@@ -85,6 +89,16 @@ export default {
           userid: "userid3",
           message: "comment3",
         },
+        {
+          cmtid: 4,
+          userid: "userid4",
+          message: "comment4",
+        },
+        {
+          cmtid: 5,
+          userid: "userid5",
+          message: "comment5",
+        },
       ],
     };
   },
@@ -106,9 +120,21 @@ export default {
       navigator.clipboard.writeText(copyText.src);
       console.log("link copied to clipboard :" + copyText.src);
     },
+
+    viewAll() {
+      document.querySelector(".view").classList = "viewNothing";
+    },
+
+    viewNothing(id) {
+      this.$emit("removeView", id);
+    },
   },
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style scoped>
+.viewNothing {
+  display: none;
+}
+</style>
