@@ -29,7 +29,7 @@
     class="toggle-comments-button"
     v-if="hasComments"
   >
-    {{ uploadedPicture.showComments ? "Hide Comments" : "View All" }}
+    {{ uploadedPicture.showComments ? "Hide All" : "View All" }}
   </button>
   <div class="comments" v-show="uploadedPicture.showComments">
     <commentSection
@@ -77,33 +77,6 @@ export default {
       isLiked: false,
       count: 0,
       imageSrc: this.uploadedPicture.image,
-      // allComments: [
-      //   {
-      //     cmtid: 1,
-      //     userid: "userid1",
-      //     message: "comment1",
-      //   },
-      //   {
-      //     cmtid: 2,
-      //     userid: "userid2",
-      //     message: "comment2",
-      //   },
-      //   {
-      //     cmtid: 3,
-      //     userid: "userid3",
-      //     message: "comment3",
-      //   },
-      //   {
-      //     cmtid: 4,
-      //     userid: "userid4",
-      //     message: "comment4",
-      //   },
-      //   {
-      //     cmtid: 5,
-      //     userid: "userid5",
-      //     message: "comment5",
-      //   },
-      // ],
     };
   },
 

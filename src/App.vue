@@ -217,14 +217,6 @@ export default {
       ],
     };
   },
-  // methods: {
-  //   viewAll(id) {
-  //     this.commentSection[id] = id;
-  //   },
-  //   viewNothing(id) {
-  //     this.commentSection[id] = null;
-  //   },
-  // },
 };
 </script>
 
