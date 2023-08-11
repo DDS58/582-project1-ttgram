@@ -1,7 +1,7 @@
 <template>
   <!-- <selectedPicture :uploadedPicture="uploadedPicture" /> -->
   <!-- <commentSection :userComment="userComment" /> -->
-  <AlbumDisplay :album="album" :allComments="allComments" />
+  <AlbumDisplay :album="album" />
 </template>
 
 <script>
@@ -27,6 +27,33 @@ export default {
           tags: "#selfie",
           likes: 0,
           created_at: "08/08/2023",
+          allComments: [
+            {
+              cmtid: 1,
+              userid: "userid1",
+              message: "comment1",
+            },
+            {
+              cmtid: 2,
+              userid: "userid2",
+              message: "comment2",
+            },
+            {
+              cmtid: 3,
+              userid: "userid3",
+              message: "comment3",
+            },
+            {
+              cmtid: 4,
+              userid: "userid4",
+              message: "comment4",
+            },
+            {
+              cmtid: 5,
+              userid: "userid5",
+              message: "comment5",
+            },
+          ],
         },
         {
           id: 2,
@@ -35,6 +62,23 @@ export default {
           tags: "#selfie",
           likes: 5,
           created_at: "09/08/2023",
+          allComments: [
+            {
+              cmtid: 3,
+              userid: "userid3",
+              message: "comment3",
+            },
+            {
+              cmtid: 4,
+              userid: "userid4",
+              message: "comment4",
+            },
+            {
+              cmtid: 5,
+              userid: "userid5",
+              message: "comment5",
+            },
+          ],
         },
         {
           id: 3,
@@ -43,6 +87,7 @@ export default {
           tags: "#selfie",
           likes: 10,
           created_at: "10/08/2023",
+          allComments: [],
         },
         {
           id: 4,
@@ -51,6 +96,18 @@ export default {
           tags: "#selfie",
           likes: 21,
           created_at: "11/08/2023",
+          allComments: [
+            {
+              cmtid: 10,
+              userid: "userid4",
+              message: "comment4",
+            },
+            {
+              cmtid: 11,
+              userid: "userid5",
+              message: "comment5",
+            },
+          ],
         },
         {
           id: 5,
@@ -59,6 +116,13 @@ export default {
           tags: "#selfie",
           likes: 55,
           created_at: "12/08/2023",
+          allComments: [
+            {
+              cmtid: 11,
+              userid: "userid3",
+              message: "comment3",
+            },
+          ],
         },
         {
           id: 6,
@@ -67,6 +131,23 @@ export default {
           tags: "#selfie",
           likes: 665,
           created_at: "15/08/2023",
+          allComments: [
+            {
+              cmtid: 3,
+              userid: "userid3",
+              message: "comment3",
+            },
+            {
+              cmtid: 4,
+              userid: "userid4",
+              message: "comment4",
+            },
+            {
+              cmtid: 5,
+              userid: "userid5",
+              message: "comment5",
+            },
+          ],
         },
         {
           id: 7,
@@ -75,6 +156,23 @@ export default {
           tags: "#selfie",
           likes: 222,
           created_at: "14/08/2023",
+          allComments: [
+            {
+              cmtid: 3,
+              userid: "userid3",
+              message: "comment3",
+            },
+            {
+              cmtid: 4,
+              userid: "userid4",
+              message: "comment4",
+            },
+            {
+              cmtid: 5,
+              userid: "userid5",
+              message: "comment5",
+            },
+          ],
         },
         {
           id: 8,
@@ -83,6 +181,38 @@ export default {
           tags: "#selfie",
           likes: 105,
           created_at: "14/08/2023",
+          allComments: [
+            {
+              cmtid: 3,
+              userid: "userid3",
+              message: "comment3",
+            },
+            {
+              cmtid: 4,
+              userid: "userid4",
+              message: "comment4",
+            },
+            {
+              cmtid: 5,
+              userid: "userid5",
+              message: "comment5",
+            },
+            {
+              cmtid: 3,
+              userid: "userid3",
+              message: "comment3",
+            },
+            {
+              cmtid: 4,
+              userid: "userid4",
+              message: "comment4",
+            },
+            {
+              cmtid: 5,
+              userid: "userid5",
+              message: "comment5",
+            },
+          ],
         },
       ],
     };

@@ -26,11 +26,10 @@
   </div>
   <div class="view">
     <commentSection
-      v-for="userComment in allComments"
+      v-for="userComment in uploadedPicture.allComments"
       :userComment="userComment"
       :key="userComment.cmtid"
-    >
-    </commentSection>
+    />
   </div>
   <div>
     <button @click="viewAll" class="asd">View All</button>
@@ -73,33 +72,33 @@ export default {
     return {
       isLiked: false,
       count: 0,
-      allComments: [
-        {
-          cmtid: 1,
-          userid: "userid1",
-          message: "comment1",
-        },
-        {
-          cmtid: 2,
-          userid: "userid2",
-          message: "comment2",
-        },
-        {
-          cmtid: 3,
-          userid: "userid3",
-          message: "comment3",
-        },
-        {
-          cmtid: 4,
-          userid: "userid4",
-          message: "comment4",
-        },
-        {
-          cmtid: 5,
-          userid: "userid5",
-          message: "comment5",
-        },
-      ],
+      // allComments: [
+      //   {
+      //     cmtid: 1,
+      //     userid: "userid1",
+      //     message: "comment1",
+      //   },
+      //   {
+      //     cmtid: 2,
+      //     userid: "userid2",
+      //     message: "comment2",
+      //   },
+      //   {
+      //     cmtid: 3,
+      //     userid: "userid3",
+      //     message: "comment3",
+      //   },
+      //   {
+      //     cmtid: 4,
+      //     userid: "userid4",
+      //     message: "comment4",
+      //   },
+      //   {
+      //     cmtid: 5,
+      //     userid: "userid5",
+      //     message: "comment5",
+      //   },
+      // ],
     };
   },
 
