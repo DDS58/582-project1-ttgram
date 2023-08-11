@@ -24,15 +24,19 @@
     </p>
     <p>{{ uploadedPicture.created_at }}</p>
   </div>
-  <div class="view">
+  <button
+    @click="toggleComments"
+    class="toggle-comments-button"
+    v-if="hasComments"
+  >
+    {{ uploadedPicture.showComments ? "Hide Comments" : "View All" }}
+  </button>
+  <div class="comments" v-show="uploadedPicture.showComments">
     <commentSection
       v-for="userComment in uploadedPicture.allComments"
       :userComment="userComment"
       :key="userComment.cmtid"
     />
-  </div>
-  <div>
-    <button @click="viewAll" class="asd">View All</button>
   </div>
 </template>
 
@@ -72,6 +76,7 @@ export default {
     return {
       isLiked: false,
       count: 0,
+      imageSrc: this.uploadedPicture.image,
       // allComments: [
       //   {
       //     cmtid: 1,
@@ -113,19 +118,20 @@ export default {
         this.isLiked = false;
       }
     },
-    // this only take the first img src link on the array
     shareLink() {
-      var copyText = document.getElementById("imgLink");
-      navigator.clipboard.writeText(copyText.src);
-      console.log("link copied to clipboard :" + copyText.src);
+      navigator.clipboard.writeText(this.imageSrc);
+      console.log("Link copied to clipboard: " + this.imageSrc);
     },
 
-    viewAll() {
-      document.querySelector(".view").classList = "viewNothing";
+    toggleComments() {
+      this.$emit("toggleComments", this.uploadedPicture.id);
     },
+  },
+  emits: ["toggle-comments"],
 
-    viewNothing(id) {
-      this.$emit("removeView", id);
+  computed: {
+    hasComments() {
+      return this.uploadedPicture.allComments.length > 0;
     },
   },
 };

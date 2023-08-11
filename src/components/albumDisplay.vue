@@ -4,6 +4,7 @@
     v-for="uploadedPicture in album"
     :uploadedPicture="uploadedPicture"
     :key="uploadedPicture.id"
+    @toggleComments="toggleComments"
   ></selectedPicture>
 </template>
 
@@ -23,6 +24,17 @@ export default {
 
   components: {
     selectedPicture,
+  },
+  methods: {
+    toggleComments(pictureId) {
+      this.album.forEach((picture) => {
+        if (picture.id === pictureId) {
+          picture.showComments = !picture.showComments;
+        } else {
+          picture.showComments = false;
+        }
+      });
+    },
   },
 };
 </script>
