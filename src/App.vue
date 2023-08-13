@@ -1,7 +1,18 @@
 <template>
-  <!-- <selectedPicture :uploadedPicture="uploadedPicture" /> -->
-  <!-- <commentSection :userComment="userComment" /> -->
-  <AlbumDisplay :album="album" />
+  <div class="app">
+    <div class="header">
+      <h1>TTGram</h1>
+      <button class="profile-button">Profile</button>
+    </div>
+    <div class="main-content">
+      <!-- <selectedPicture :uploadedPicture="uploadedPicture" /> -->
+      <!-- <commentSection :userComment="userComment" /> -->
+      <AlbumDisplay :album="album" />
+    </div>
+    <div class="footer">
+      <p>&copy; 2023 TTGram</p>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -220,13 +231,103 @@ export default {
 };
 </script>
 
-<style>
-/* #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+<!-- need to install scss module? -->
+<style lang="scss">
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  color: #333;
+  background-color: #fafafa;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #fff;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+  h1 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+}
+
+.main-content {
+  padding: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+#imgLink {
+  width: 100%;
+  height: auto;
+}
+
+.tags {
+  font-size: 12px;
+  color: #8c8c8c;
+  display: flex;
+  justify-content: center;
+}
+.icon-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.icons:hover {
+  cursor: pointer;
+}
+
+input {
+  padding: 8px 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.comment-input {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.commentStyle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2px;
+}
+
+button {
+  padding: 8px 16px;
+  background-color: #3897f0;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.footer {
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-} */
+  padding: 16px;
+  background-color: #fff;
+  box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.1);
+  color: #999;
+}
 </style>

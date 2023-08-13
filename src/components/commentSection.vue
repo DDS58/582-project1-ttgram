@@ -1,6 +1,8 @@
 <template>
   <!-- <h2>Comment Section</h2> -->
-  <p>{{ userComment.userid }} : {{ userComment.message }}</p>
+  <div class="commentStyle">
+    <p>{{ userComment.userid }} : {{ userComment.message }}</p>
+  </div>
 </template>
 
 <script>

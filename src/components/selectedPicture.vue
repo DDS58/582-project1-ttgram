@@ -8,29 +8,42 @@
       alt="uploaded picture"
       @dblclick="likePicture"
     />
-    <p>{{ uploadedPicture.tags }}</p>
-    <p>
-      <font-awesome-icon
-        v-if="!isLiked"
-        @click="likePicture"
-        icon="fa-regular fa-heart"
-      />
-      <font-awesome-icon v-else @click="likePicture" icon="fa-solid fa-heart" />
-      {{ uploadedPicture.likes + count }}
-      <font-awesome-icon
-        @dblclick="shareLink"
-        icon="fa-regular fa-share-from-square"
-      />
-    </p>
-    <p>{{ uploadedPicture.created_at }}</p>
+    <p class="tags">{{ uploadedPicture.tags }}</p>
+    <div class="icon-row">
+      <p class="icons">
+        <font-awesome-icon
+          v-if="!isLiked"
+          @click="likePicture"
+          icon="fa-regular fa-heart"
+        />
+        <font-awesome-icon
+          v-else
+          @click="likePicture"
+          icon="fa-solid fa-heart"
+        />
+        {{ uploadedPicture.likes + count }}
+        <font-awesome-icon
+          @dblclick="shareLink"
+          icon="fa-regular fa-share-from-square"
+        />
+      </p>
+      <p>{{ uploadedPicture.created_at }}</p>
+    </div>
   </div>
+
+  <div class="comment-input">
+    <input v-model="newComment" placeholder="Enter your comment" />
+    <button @click="addComment">Add Comment</button>
+  </div>
+
   <button
     @click="toggleComments"
     class="toggle-comments-button"
     v-if="hasComments"
   >
-    {{ uploadedPicture.showComments ? "Hide All" : "View All" }}
+    {{ uploadedPicture.showComments ? "Hide All" : "View All Comment" }}
   </button>
+
   <div class="comments" v-show="uploadedPicture.showComments">
     <commentSection
       v-for="userComment in uploadedPicture.allComments"
@@ -77,10 +90,24 @@ export default {
       isLiked: false,
       count: 0,
       imageSrc: this.uploadedPicture.image,
+      newComment: "",
     };
   },
 
   methods: {
+    addComment() {
+      if (this.newComment.trim() !== "") {
+        const newCommentObj = {
+          cmtid: this.uploadedPicture.allComments.length + 1,
+          userid: "randomUser",
+          message: this.newComment,
+        };
+        const updatedUploadedPicture = { ...this.uploadedPicture };
+        updatedUploadedPicture.allComments.push(newCommentObj);
+        this.newComment = "";
+      }
+    },
+
     likePicture() {
       this.isLiked = !this.isLiked;
       if (this.isLiked) {
