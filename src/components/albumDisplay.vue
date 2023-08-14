@@ -1,5 +1,5 @@
 <template>
-  <h2>AlbumDisplay</h2>
+  <!-- <h2>AlbumDisplay</h2> -->
   <selectedPicture
     v-for="uploadedPicture in album"
     :uploadedPicture="uploadedPicture"

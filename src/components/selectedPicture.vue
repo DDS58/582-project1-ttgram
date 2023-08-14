@@ -70,6 +70,7 @@ export default {
           tags: "tags",
           likes: 0,
           created_at: "timestamp",
+          allComments: [],
         };
       },
     },
@@ -99,7 +100,7 @@ export default {
       if (this.newComment.trim() !== "") {
         const newCommentObj = {
           cmtid: this.uploadedPicture.allComments.length + 1,
-          userid: "randomUser",
+          userid: "David58",
           message: this.newComment,
         };
         const updatedUploadedPicture = { ...this.uploadedPicture };
