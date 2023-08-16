@@ -1,48 +1,16 @@
 import { shallowMount } from "@vue/test-utils";
 import selectedPicture from "@/components/selectedPicture.vue";
-import albumDisplay from "@/components/albumDisplay.vue";
-import commentSection from "@/components/commentSection.vue";
 
 describe("selectedPicture.vue", () => {
   it("displays the username correctly", () => {
-    const wrapper = shallowMount(
-      selectedPicture,
-      // albumDisplay,
-      // commentSection,
-      {
-        global: {
-          stubs: ["FontAwesomeIcon"],
-        },
-      }
-    );
+    const wrapper = shallowMount(selectedPicture, {
+      global: {
+        stubs: ["FontAwesomeIcon"],
+      },
+    });
     expect(wrapper.find("h3").text()).toContain("username");
   });
 
-  // it("increments the likes count when like button is clicked", async () => {
-  //   const wrapper = shallowMount(
-  //     selectedPicture,
-  //     // albumDisplay,
-  //     // commentSection,
-  //     {
-  //       global: {
-  //         stubs: ["FontAwesomeIcon"],
-  //       },
-  //       props: {
-  //         uploadedPicture: {
-  //           likes: 10,
-  //         },
-  //       },
-  //     }
-  //   );
-  //   // console.log(wrapper.html());
-  //   const likeButton = wrapper.find("img");
-  //   await likeButton.trigger("dblclick");
-  //   const updatedLikesCount = wrapper.vm.count;
-  //   expect(updatedLikesCount).toBe(11);
-  // });
-
-  // it('displays a "1 like" message when there is one like', async () => {});
-  // it('emits a "like" event when like button is clicked + dblick on image', async () => {});
   it("it display the full heart when isLiked is true", async () => {
     const wrapper = shallowMount(selectedPicture, {
       global: {
@@ -53,7 +21,7 @@ describe("selectedPicture.vue", () => {
     expect(wrapper.html()).toContain("fa-solid fa-heart");
   });
 
-  it("renders the photo", () => {
+  it("renders the photo and other data", () => {
     const imageSrc =
       "https://skyandtelescope.org/wp-content/uploads/Gale-crater-hydrated.jpg";
     const wrapper = shallowMount(selectedPicture, {
@@ -63,10 +31,10 @@ describe("selectedPicture.vue", () => {
       props: {
         uploadedPicture: {
           id: 1,
-          username: "username",
+          username: "david",
           image: imageSrc,
           tags: "#selfie",
-          likes: 0,
+          likes: 5,
           created_at: "08/08/2023",
           allComments: [],
         },
@@ -74,9 +42,89 @@ describe("selectedPicture.vue", () => {
     });
     const imgElement = wrapper.find("img");
     expect(imgElement.attributes("src")).toBe(imageSrc);
+    expect(wrapper.find("h3").text()).toBe("david");
+    expect(wrapper.find(".tags").text()).toBe("#selfie");
+    expect(wrapper.find(".icons").text()).toContain("5");
+  });
+
+  it("increments the likes count when like button is clicked", async () => {
+    const wrapper = shallowMount(selectedPicture, {
+      global: {
+        stubs: ["FontAwesomeIcon"],
+      },
+      props: {
+        uploadedPicture: {
+          id: 1,
+          username: "david",
+          image: "https://placehold.co/400",
+          tags: "#selfie",
+          likes: 5,
+          created_at: "08/08/2023",
+          allComments: [],
+        },
+      },
+    });
+    const likeButton = wrapper.find("img");
+    await likeButton.trigger("dblclick");
+    expect(wrapper.find(".icons").text()).toContain("6");
+  });
+
+  it('emits a "toggle-comments" event when toggle comments button is clicked', async () => {
+    const uploadedPicture = {
+      id: 1,
+      username: "david",
+      image: "https://placehold.co/400",
+      tags: "#selfie",
+      likes: 5,
+      created_at: "08/08/2023",
+      allComments: [
+        {
+          cmtid: 1,
+          userid: "lilynniebby",
+          message: "This is literally so Taylor swift coded.",
+        },
+      ],
+    };
+
+    const wrapper = shallowMount(selectedPicture, {
+      global: {
+        stubs: ["FontAwesomeIcon"],
+      },
+      props: { uploadedPicture },
+      emits: ["toggleComments"],
+    });
+
+    const toggleCommentsButton = wrapper.find("button");
+    await toggleCommentsButton.trigger("click");
+    expect(wrapper.emitted().toggleComments).toBeTruthy();
+  });
+
+  it('adds a comment when "Add Comment" button is clicked', async () => {
+    const uploadedPicture = {
+      id: 1,
+      username: "david",
+      image: "https://placehold.co/400",
+      tags: "#selfie",
+      likes: 5,
+      created_at: "08/08/2023",
+      allComments: [],
+    };
+
+    const wrapper = shallowMount(selectedPicture, {
+      global: {
+        stubs: ["FontAwesomeIcon"],
+      },
+      props: { uploadedPicture },
+    });
+
+    const newComment = "Test comment";
+    const commentInput = wrapper.find(".comment-input input");
+    await commentInput.setValue(newComment);
+
+    const addButton = wrapper.find(".comment-input button");
+    await addButton.trigger("click");
+
+    expect(wrapper.vm.uploadedPicture.allComments).toHaveLength(1);
+    expect(wrapper.vm.uploadedPicture.allComments[0].message).toBe(newComment);
   });
 });
-
-// it('displays a "View all likes" button when there are more than 2 likes', async () => {});
-// it('displays a "Share" button for users to share the photo', async () => {});
-// it('emits a "share" event when clicking the "Share" button', async () => {});
