@@ -128,7 +128,7 @@ export default {
       this.$emit("toggleComments", this.uploadedPicture.id);
     },
   },
-  emits: ["toggle-comments"],
+  emits: ["toggleComments"],
 
   computed: {
     hasComments() {

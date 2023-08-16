@@ -11,7 +11,7 @@ describe("selectedPicture.vue", () => {
     expect(wrapper.find("h3").text()).toContain("username");
   });
 
-  it("it display the full heart when isLiked is true", async () => {
+  it("it display the full heart when isLiked is true and the reverse", async () => {
     const wrapper = shallowMount(selectedPicture, {
       global: {
         stubs: ["FontAwesomeIcon"],
@@ -19,6 +19,9 @@ describe("selectedPicture.vue", () => {
     });
     await wrapper.setData({ isLiked: true });
     expect(wrapper.html()).toContain("fa-solid fa-heart");
+
+    await wrapper.setData({ isLiked: false });
+    expect(wrapper.html()).toContain("fa-regular fa-heart");
   });
 
   it("renders the photo and other data", () => {
@@ -69,7 +72,7 @@ describe("selectedPicture.vue", () => {
     expect(wrapper.find(".icons").text()).toContain("6");
   });
 
-  it('emits a "toggle-comments" event when toggle comments button is clicked', async () => {
+  it('emits a "toggleComments" event when toggle comments button is clicked', async () => {
     const uploadedPicture = {
       id: 1,
       username: "david",
